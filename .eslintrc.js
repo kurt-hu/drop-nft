@@ -22,7 +22,7 @@ module.exports = {
   plugins: ['@typescript-eslint', 'vue-a11y', 'prettier', 'vue'],
   // add your custom rules here
   rules: {
-    'prettier/prettier': ['error', { singleQuote: true, trailingComma: 'es5', printWidth: 100 }],
+    'prettier/prettier': ['error', { 'endOfLine':'auto' }],
     'import/extensions': [
       'error',
       'always',

@@ -1,14 +1,11 @@
 <template>
   <section class="home">
     <div class="py-24 md:py-36 mx-auto flex flex-wrap flex-col md:flex-row items-center">
-      <div class="flex flex-col w-full xl:w-3/5 justify-center lg:items-start overflow-y-hidden">
+      <div class="flex flex-col w-full xl:w-3/5 justify-center lg:items-center overflow-y-hidden">
         <div v-html="$md.render(welcomeText)" class="home__welcome markdown" />
 
         <div class="mb-12 xl:mb-0">
-          <h4 v-if="isSignedUp">Thank you - we'll be in touch shortly.</h4>
-
           <form
-            v-else
             @submit.prevent="handleSubmit"
             name="signups"
             netlify
@@ -32,14 +29,15 @@
             </button>
           </form>
         </div>
+        <h4 v-if="isEmailInvalid">Your email is invalid.</h4>
       </div>
-      <div class="flex flex-col w-full xl:w-2/5">
+      <!-- <div class="flex flex-col w-full xl:w-2/5"> 
         <img
           alt="Hero"
           class="rounded shadow-xl"
           src="https://source.unsplash.com/random/720x400"
         />
-      </div>
+      </div> -->
     </div>
   </section>
 </template>
@@ -62,6 +60,7 @@ export default class Home extends Vue {
   }
 
   isSignedUp = false;
+  isEmailInvalid = false;
 
   form = {
     email: '',
@@ -82,6 +81,7 @@ export default class Home extends Vue {
   async handleSubmit(): Promise<void> {
     if (!this.validEmail(this.form.email)) {
       this.$refs.emailInput.focus();
+      this.isEmailInvalid = true;
       return;
     }
 
