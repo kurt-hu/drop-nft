@@ -22,7 +22,7 @@ module.exports = {
   plugins: ['@typescript-eslint', 'vue-a11y', 'prettier', 'vue'],
   // add your custom rules here
   rules: {
-    'prettier/prettier': ['error', { 'endOfLine':'auto' }],
+    'prettier/prettier': ['error', {}],
     'import/extensions': [
       'error',
       'always',
@@ -40,6 +40,7 @@ module.exports = {
     'class-methods-use-this': 0,
     'vue/max-attributes-per-line': 'off',
     'vue/component-name-in-template-casing': [1, 'kebab-case'],
+    "@typescript-eslint/explicit-module-boundary-types": 0
   },
   settings: {
     'import/core-modules': [
